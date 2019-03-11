@@ -30,4 +30,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</select>
+	
+	<!-- 根据条件查询总数 -->
+	<select id="findTeacherScoreCount" parameterType="hashmap"
+		resultType="TeacherScore">
+		select count(id) as count from zls_item_teacher_Score
+		<where>
+			<if test="listpid !=null">
+				and listpid=#{listpid,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
 </mapper>

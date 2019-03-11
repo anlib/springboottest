@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cp.cpspringboot.teacherScore.model.TeacherScore;
 import com.cp.cpspringboot.teacherScore.model.TeacherScore;
 import com.cp.cpspringboot.teacherScore.service.TeacherScoreService;
 
@@ -48,5 +50,28 @@ public List<TeacherScore> findTeacherScoreList(@PathVariable("pageNum") int page
 		}
 		return teacherScoreService.findTeacherScore(pageNum, pageSize, map);
 	}
+	
+
+	/**
+	 * 查询数量信息
+	 * @return
+	 */
+	@RequestMapping(value = "/count", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	public List<TeacherScore> findTeacherScoreCount(@RequestBody Map<String, Object> params) {
+//		 System.out.println("------- POST: list -------");
+//		 for (Map.Entry<String, Object> entry : params.entrySet()) {
+//		 System.out.println("Key = " + entry.getKey() + ", Value = " +
+//		 entry.getValue());
+//		 }
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (params.get("listpid") != null && !"".equals(params.get("listpid"))) {
+			map.put("listpid", params.get("listpid"));
+		}
+//		for (Map.Entry<String, Object> entry : map.entrySet()) {
+//			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//		}
+		return teacherScoreService.findTeacherScoreCount(map);
+	}
+
 	
 }

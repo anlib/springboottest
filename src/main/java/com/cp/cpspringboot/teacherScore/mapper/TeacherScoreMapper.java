@@ -14,4 +14,6 @@ import com.github.pagehelper.PageHelper;
 public interface TeacherScoreMapper {
 
     List<TeacherScore> findTeacherScore(Map<String, Object> map);
+
+	List<TeacherScore> findTeacherScoreCount(Map<String, Object> map);
 }

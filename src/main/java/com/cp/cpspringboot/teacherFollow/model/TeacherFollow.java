@@ -4,6 +4,7 @@ public class TeacherFollow {
 	private Long id;
 	private String touserid;
 	private String fromuserid;
+	private int count;
 	public Long getId() {
 		return id;
 	}
@@ -22,5 +23,10 @@ public class TeacherFollow {
 	public void setFromuserid(String fromuserid) {
 		this.fromuserid = fromuserid;
 	}
-	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 }

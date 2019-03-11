@@ -34,4 +34,9 @@ public class TeacherFollowServiceImpl implements TeacherFollowService{
 	public List<TeacherFollow> findTeacherFollow(Map<String, Object> map) {
     	return TeacherFollowMapper.findTeacherFollow(map);
 	}
+
+	@Override
+	public List<TeacherFollow> findTeacherFollowCount(Map<String, Object> map) {
+		return TeacherFollowMapper.findTeacherFollowCount(map);
+	}
 }

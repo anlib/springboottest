@@ -1,13 +1,17 @@
 package com.cp.cpspringboot.teacherFollow.controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.cp.cpspringboot.teacherFollow.model.TeacherFollow;
 import com.cp.cpspringboot.teacherFollow.service.TeacherFollowService;
 
@@ -26,17 +30,19 @@ public class TeacherFollowController {
 
 	/**
 	 * 查询信息
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/list/{pageNum}/{pageSize}", method = RequestMethod.POST, produces = {
-	"application/json;charset=UTF-8" })
-public List<TeacherFollow> findTeacherFollowList(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize,
-	@RequestBody Map<String, Object> params, TeacherFollow teacherFollow) {
-//		 System.out.println("------- POST: list -------");
-//		 for (Map.Entry<String, Object> entry : params.entrySet()) {
-//			 System.out.println("Key = " + entry.getKey() + ", Value = " +
-//			 entry.getValue());
-//		 }
+			"application/json;charset=UTF-8" })
+	public List<TeacherFollow> findTeacherFollowList(@PathVariable("pageNum") int pageNum,
+			@PathVariable("pageSize") int pageSize, @RequestBody Map<String, Object> params,
+			TeacherFollow teacherFollow) {
+		// System.out.println("------- POST: list -------");
+		// for (Map.Entry<String, Object> entry : params.entrySet()) {
+		// System.out.println("Key = " + entry.getKey() + ", Value = " +
+		// entry.getValue());
+		// }
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (params.get("touserid") != null && !"".equals(params.get("touserid"))) {
 			map.put("touserid", params.get("touserid"));
@@ -46,5 +52,57 @@ public List<TeacherFollow> findTeacherFollowList(@PathVariable("pageNum") int pa
 		}
 		return teacherFollowService.findTeacherFollow(pageNum, pageSize, map);
 	}
-	
+
+	/**
+	 * 查询数量信息
+	 * @return
+	 */
+	@RequestMapping(value = "/count", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	public List<TeacherFollow> findTeacherFollowCount(@RequestBody Map<String, Object> params) {
+//		 System.out.println("------- POST: list -------");
+//		 for (Map.Entry<String, Object> entry : params.entrySet()) {
+//		 System.out.println("Key = " + entry.getKey() + ", Value = " +
+//		 entry.getValue());
+//		 }
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (params.get("touserid") != null && !"".equals(params.get("touserid"))) {
+			map.put("touserid", params.get("touserid"));
+		}
+//		for (Map.Entry<String, Object> entry : map.entrySet()) {
+//			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//		}
+		return teacherFollowService.findTeacherFollowCount(map);
+	}
+
+	// /**
+	// * get测试查询信息
+	// * @return
+	// */
+//	@RequestMapping(value = "/countget", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+//	public List<TeacherFollow> findTeacherFollowCountGet() {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("touserid", "9");
+//		return teacherFollowService.findTeacherFollowCount(map);
+//	}
+	// @RequestMapping(value = "/list/{pageNum}/{pageSize}", method =
+	// RequestMethod.GET, produces = {
+	// "application/json;charset=UTF-8" })
+	// public List<TeacherFollow>
+	// findTeacherFollowListGet(@PathVariable("pageNum") int pageNum,
+	// @PathVariable("pageSize") int pageSize,
+	// @RequestParam Map<String, Object> params, TeacherFollow teacherFollow) {
+	// Map<String, Object> map = new HashMap<String, Object>();
+	// if (params.get("touserid") != null && !"".equals(params.get("touserid")))
+	// {
+	// map.put("touserid", params.get("touserid"));
+	// }
+	// for (Map.Entry<String, Object> entry : map.entrySet()) {
+	// System.out.println("Key = " + entry.getKey() + ", Value = " +
+	// entry.getValue());
+	// }
+	// return teacherFollowService.findTeacherFollow(pageNum, pageSize, map);
+	// }
+	//
+	//
+
 }

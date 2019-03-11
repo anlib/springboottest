@@ -12,6 +12,6 @@ import com.github.pagehelper.PageHelper;
  */
 @Mapper  //  该注解一定要加，否则无法映射到mybatis的***.xml局部配置文件
 public interface TeacherFollowMapper {
-
     List<TeacherFollow> findTeacherFollow(Map<String, Object> map);
+	List<TeacherFollow> findTeacherFollowCount(Map<String, Object> map);
 }

@@ -7,6 +7,7 @@ public class TeacherScore {
 	private String num;
 	private String userid;
 	private int listpid;
+	private int count;
 	public Long getId() {
 		return id;
 	}
@@ -42,6 +43,12 @@ public class TeacherScore {
 	}
 	public void setListpid(int listpid) {
 		this.listpid = listpid;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 }

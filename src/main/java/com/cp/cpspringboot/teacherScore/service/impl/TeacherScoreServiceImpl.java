@@ -34,4 +34,9 @@ public class TeacherScoreServiceImpl implements TeacherScoreService{
 	public List<TeacherScore> findTeacherScore(Map<String, Object> map) {
     	return TeacherScoreMapper.findTeacherScore(map);
 	}
+
+	@Override
+	public List<TeacherScore> findTeacherScoreCount(Map<String, Object> map) {
+		return TeacherScoreMapper.findTeacherScoreCount(map);
+	}
 }

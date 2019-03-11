@@ -21,4 +21,6 @@ public interface TeacherScoreService {
     List<TeacherScore> findTeacherScore(int pageNum, int pageSize, Map<String, Object> map);
 
 	List<TeacherScore> findTeacherScore(Map<String, Object> map);
+
+	List<TeacherScore> findTeacherScoreCount(Map<String, Object> map);
 }

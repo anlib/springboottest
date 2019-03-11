@@ -2,8 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.cp.cpspringboot.teacherFollow.mapper.TeacherFollowMapper">
+<mapper namespace="com.cp.cpspringboot.teacherFollow.mapper.TeacherFollowMapper">
 	<sql id="Base_Column_List">
 		id,touserid,fromuserid
 	</sql>
@@ -29,5 +28,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				order by id
 			</otherwise>
 		</choose>
+	</select>
+	<!-- 根据条件查询总数 -->
+	<select id="findTeacherFollowCount" parameterType="hashmap"
+		resultType="TeacherFollow">
+		select count(id) as count from zls_item_teacher_Follow
+		<where>
+			<if test="touserid !=null">
+				and touserid=#{touserid,jdbcType=INTEGER}
+			</if>
+		</where>
 	</select>
 </mapper>
