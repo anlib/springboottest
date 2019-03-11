@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cp.cpspringboot.myTestTwo.mapper.DeptMapper">
+  <resultMap id="BaseResultMap" type="com.cp.cpspringboot.myTestTwo.model.Dept" >
+    <id column="dept_id" property="deptId" jdbcType="INTEGER" />
+    <result column="dept_no" property="deptNo" jdbcType="INTEGER" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+<!--     <result column="update_time" property="updateTime" jdbcType="DATE" /> -->
+  </resultMap>
+    
+    <!-- 查询 -->
+    <select id="findAll" resultType="Dept">
+        SELECT dept_no, dept_name FROM dept ;
+    </select>
+    <insert id="addDept" parameterType="Dept" >
+        INSERT INTO dept(dept_name) VALUES (#{deptName}) ;
+    </insert>
+</mapper>

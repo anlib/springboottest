@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cp.cpspringboot.teacher.mapper.TeacherMapper">
+	<resultMap id="BaseResultMap" type="com.cp.cpspringboot.teacher.model.Teacher">
+		<!-- id teacher avatar gender teaching_experience -->
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="teacher" property="teacher" jdbcType="VARCHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="VARCHAR" />
+		<result column="experience" property="experience" jdbcType="VARCHAR" />
+		<result column="education" property="education" jdbcType="VARCHAR" />
+		<result column="grade" property="grade" jdbcType="VARCHAR" />
+		<result column="taught" property="taught" jdbcType="VARCHAR" />
+		<result column="active" property="active" jdbcType="INTEGER" />
+		<!-- jdbcType="DATE" -->
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, teacher, avatar,
+		gender,myflag,openid,birthday,teachtime,city,area,
+		experience,address,university,education,grade,taught,graduation,auth,wechat,gradetaught,
+		mobile,price,pricetime,style,latitude,longitude,posttime,score,lastlongin,active,flag
+	</sql>
+	<!-- 根据条件查询 -->
+	<select id="findTeacher" parameterType="hashmap" resultType="Teacher">
+		select
+		<include refid="Base_Column_List" />
+		from zls_item_teacher
+		<where>
+			<if test="id!=null and id!=''">
+				and id=#{id,jdbcType=INTEGER}
+			</if>
+			<if test="teacher!=null and teacher!=''">
+				and teacher like '%${teacher}%'
+			</if>
+			<if test="gender!=null and gender!=''">
+				and gender=#{gender}
+			</if>
+			<if test="area!=null and area!=''">
+				and area=#{area}
+			</if>
+			<if test="experience!=null and experience!=''">
+				and experience=#{experience}
+			</if>
+			<if test="active!=null and active!=''">
+				and active=#{active}
+			</if>
+			<if test="openid!=null and openid!=''">
+				and openid=#{openid}
+			</if>
+			<if test="ids != null and ids.size > 0">
+				AND id IN
+				<foreach item="item" index="index" collection="ids" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+		<if test="order!=null and order!=''">
+			order by ${order}
+		</if>
+	</select>
+
+	<!-- 根据条件更新 -->
+	<update id="update" parameterType="com.cp.cpspringboot.teacher.model.Teacher"
+		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		update zls_item_teacher
+		<trim prefix="set" suffixOverrides=",">
+			<if test="teacher!=null and teacher!=''">
+				teacher=#{teacher},
+			</if>
+			<if test="birthday!=null and birthday!=''">
+				birthday=#{birthday},
+			</if>
+			<if test="gender!=null and gender!=''">
+				gender=#{gender},
+			</if>
+			<if test="gradetaught!=null and gradetaught!=''">
+				gradetaught=#{gradetaught},
+			</if>
+			<if test="taught!=null and taught!=''">
+				taught=#{taught},
+			</if>
+			<if test="grade!=null and grade!=''">
+				grade=#{grade},
+			</if>
+			<if test="price!=null and price!=''">
+				price=#{price},
+			</if>
+			<if test="pricetime!=null and pricetime!=''">
+				pricetime=#{pricetime},
+			</if>
+			<if test="teachtime!=null and teachtime!=''">
+				teachtime=#{teachtime},
+			</if>
+			<if test="city!=null and city!=''">
+				city=#{city},
+			</if>
+			<if test="area!=null and area!=''">
+				area=#{area},
+			</if>
+			<if test="lastlongin!=null and lastlongin!=''">
+				lastlongin=#{lastlongin},
+			</if>
+			<if test="experience!=null and experience!=''">
+				experience=#{experience},
+			</if>
+			<if test="myflag!=null and myflag!=''">
+				myflag=#{myflag},
+			</if>
+		</trim>
+		<where>
+			<if test="id!=null and id!=''">
+				and id=#{id,jdbcType=INTEGER}
+			</if>
+			<if test="openid!=null and openid!=''">
+				and openid=#{openid,jdbcType=INTEGER}
+			</if>
+		</where>
+	</update>
+	<insert id="insert" parameterType="com.cp.cpspringboot.teacher.model.Teacher"
+		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into zls_item_teacher
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="grade != null">
+				grade,
+			</if>
+			<if test="teacher != null">
+				teacher,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="experience != null">
+				experience,
+			</if>
+			<if test="lastlongin != null">
+				lastlongin,
+			</if>
+			<if test="openid != null">
+				openid,
+			</if>
+			<if test="myflag != null">
+				myflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="grade != null">
+				#{grade,jdbcType=VARCHAR},
+			</if>
+			<if test="teacher != null">
+				#{teacher,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=VARCHAR},
+			</if>
+			<if test="experience != null">
+				#{experience,jdbcType=VARCHAR},
+			</if>
+			<if test="lastlongin != null">
+				#{lastlongin,jdbcType=VARCHAR},
+			</if>
+			<if test="openid != null">
+				#{openid,jdbcType=VARCHAR},
+			</if>
+			<if test="myflag != null">
+				#{myflag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+</mapper>
