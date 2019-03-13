@@ -524,10 +524,15 @@ public class FileUtils {
 				file.transferTo(dest);
 				map.put(i, savePath + "/" + nowStr + "/" + fileName);
 				System.out.println("第" + (i + 1) + "个文件上传成功" + SaveFilePath + fileName);
-				// 缩略图
-				Thumbnails.of(SaveFilePath + fileName).size(120, 90).keepAspectRatio(false)
-						.toFile(SaveFilePath + fileName + ".jpg");
-
+				//System.out.println("文件"+fileName+"的大小是："+ file.getSize());
+				if (file.getSize() > 100000){//文件大于100K就做缩略处理
+					// 缩略图
+					Thumbnails.of(SaveFilePath + fileName).size(320, 240)
+					    .keepAspectRatio(true).toFile(SaveFilePath + fileName + ".jpg");
+				} else {
+					Thumbnails.of(SaveFilePath + fileName).size(120, 90)
+					    .keepAspectRatio(true).toFile(SaveFilePath + fileName + ".jpg");
+				}
 			} catch (IOException e) {
 				System.out.println("上传第" + (i++) + "个文件失败" + SaveFilePath + fileName);
 				System.out.printf(e.toString(), e);

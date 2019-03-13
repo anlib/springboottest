@@ -42,9 +42,9 @@ public class TeacherCertificateController {
 		map.put("setid", 10);
 		map.put("pid", pid);
 		map.put("order", "id DESC");
-		for (Map.Entry<String, Object> entry : map.entrySet()) {
-			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-		}
+//		for (Map.Entry<String, Object> entry : map.entrySet()) {
+//			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//		}
 		List<TeacherCertificate> list = teacherCertificateService.findTeacherCertificate(map);
 		return list;
 	}
