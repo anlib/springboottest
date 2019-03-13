@@ -14,4 +14,6 @@ import com.github.pagehelper.PageHelper;
 public interface TeacherFollowMapper {
     List<TeacherFollow> findTeacherFollow(Map<String, Object> map);
 	List<TeacherFollow> findTeacherFollowCount(Map<String, Object> map);
+	int insert(TeacherFollow teacherFollow);
+	int delete(TeacherFollow teacherFollow);
 }

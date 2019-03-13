@@ -61,7 +61,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			order by ${order}
 		</if>
 	</select>
-
 	<!-- 根据条件更新 -->
 	<update id="update" parameterType="com.cp.cpspringboot.teacher.model.Teacher"
 		useGeneratedKeys="true" keyProperty="id" keyColumn="id">

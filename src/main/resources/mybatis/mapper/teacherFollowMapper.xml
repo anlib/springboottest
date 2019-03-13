@@ -13,11 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="Base_Column_List" />
 		from zls_item_teacher_Follow
 		<where>
-			<if test="id!=null and id!=''">
+			<if test="id!=null">
 				and id=#{id,jdbcType=INTEGER}
 			</if>
-			<if test="touserid !=null and touserid !=''">
+			<if test="touserid !=null">
 				and touserid=#{touserid,jdbcType=INTEGER}
+			</if>
+			<if test="fromuserid !=null">
+				and fromuserid=#{fromuserid,jdbcType=INTEGER}
 			</if>
 		</where>
 		<choose>
@@ -37,6 +40,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="touserid !=null">
 				and touserid=#{touserid,jdbcType=INTEGER}
 			</if>
+			<if test="fromuserid !=null">
+				and fromuserid=#{fromuserid,jdbcType=INTEGER}
+			</if>
 		</where>
 	</select>
+	<!-- 添加follow -->
+	<insert id="insert" parameterType="com.cp.cpspringboot.teacherFollow.model.TeacherFollow"
+		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into zls_item_teacher_Follow
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="touserid != null">
+				touserid,
+			</if>
+			<if test="fromuserid != null">
+				fromuserid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="touserid != null">
+				#{touserid,jdbcType=INTEGER},
+			</if>
+			<if test="fromuserid != null">
+				#{fromuserid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<!-- 根据条件删除 -->
+	<delete id="delete" parameterType="com.cp.cpspringboot.teacherFollow.model.TeacherFollow">
+		DELETE FROM zls_item_teacher_Follow
+		<where>
+			<if test="touserid !=null">
+				and touserid=#{touserid,jdbcType=INTEGER}
+			</if>
+			<if test="fromuserid !=null">
+				and fromuserid=#{fromuserid,jdbcType=INTEGER}
+			</if>
+		</where>
+	</delete>
 </mapper>
