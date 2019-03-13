@@ -44,7 +44,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- 使用war包配置 end2 -->
-
 		<!-- mybatis依赖 -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
