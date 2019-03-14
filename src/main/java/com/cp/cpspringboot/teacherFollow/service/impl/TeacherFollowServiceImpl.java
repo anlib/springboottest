@@ -19,7 +19,7 @@ import java.util.Map;
 public class TeacherFollowServiceImpl implements TeacherFollowService{
 
     @Autowired
-    private TeacherFollowMapper TeacherFollowMapper;  //  注入mapper
+    private TeacherFollowMapper TeacherFollowMapper;
 
     /*
      * list
@@ -39,4 +39,45 @@ public class TeacherFollowServiceImpl implements TeacherFollowService{
 	public List<TeacherFollow> findTeacherFollowCount(Map<String, Object> map) {
 		return TeacherFollowMapper.findTeacherFollowCount(map);
 	}
+
+	@Override
+	public int insert(TeacherFollow teacherFollow) {
+		//String jsonString = JSONArray.toJSONString(teacherFollow);
+  	    //System.out.println("teacherFollow:" + jsonString);
+        if (teacherFollow!=null && !"".equals(teacherFollow)) {
+            try {
+                int effectCount = TeacherFollowMapper.insert(teacherFollow);
+//                System.out.println("insertId:" + effectCount);
+                if (effectCount > 0) {
+                    return effectCount;
+                } else {
+                    throw new RuntimeException("插入失败");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("插入失败"+ e.getMessage());
+            }
+        }else {
+            throw new RuntimeException("信息不能为空");
+        }
+	}
+
+	@Override
+	public int delete(TeacherFollow teacherFollow) {
+		if (teacherFollow!=null && !"".equals(teacherFollow)) {
+            try {
+                int effectCount = TeacherFollowMapper.delete(teacherFollow);
+                if (effectCount > 0) {
+                    return effectCount;
+                } else {
+                    throw new RuntimeException("删除失败");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("删除失败"+ e.getMessage());
+            }
+        }else {
+            throw new RuntimeException("信息不能为空");
+        }
+	}
+	
+	
 }

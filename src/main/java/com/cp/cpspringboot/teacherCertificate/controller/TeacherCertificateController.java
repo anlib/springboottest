@@ -81,9 +81,4 @@ public class TeacherCertificateController {
 		return list;
 	}
 
-	@RequestMapping(value = "/upload/{pid}", method = RequestMethod.GET)
-	public List<String> uploadTeacherGet(@PathVariable("pid") int pid, HttpServletRequest request) {
-		return uploadTeacherCertificate(pid, request);
-	}
-
 }
