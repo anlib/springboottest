@@ -482,12 +482,21 @@ public class FileUtils {
 		}
 		return true;
 	}
-
+	
 	/*
 	 * 多个文件上传
 	 */
-	public static Map<Integer, String> multiUpload(HttpServletRequest request, String formFileName, String savePath,
-			String servPath) {
+	public static Map<Integer, String> multiUpload(HttpServletRequest request, 
+			String formFileName, String savePath, String servPath) {
+		return multiUpload(request, formFileName, savePath,  servPath, null, 0) ;
+	}
+	
+	/*
+	 * 多个文件上传
+	 */
+	public static Map<Integer, String> multiUpload(HttpServletRequest request, 
+			String formFileName, String savePath, String servPath,
+			List<String> fileNameList, int fileWH) {
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		System.out.println("------------------------------------------multiUpload");
 		// long start = System.currentTimeMillis();
@@ -513,28 +522,38 @@ public class FileUtils {
 			filePath.mkdir();
 		}
 		System.out.println(files.size());
+		String pathFile = null;
 		for (int i = 0; i < files.size(); i++) {
 			MultipartFile file = files.get(i);
-			String fileName = FileUtils.fileNameNew(file.getOriginalFilename());
-			if (file.isEmpty()) {
-				System.out.println("上传第" + (i++) + "个文件失败" + SaveFilePath + fileName);
+			if (fileNameList != null &&  !"".equals(fileNameList)){
+				pathFile = fileNameList.get(i);
+				System.out.println("使用原有文件名：" + pathFile);
+			}else{
+				pathFile = savePath + "/" + nowStr + "/" + FileUtils.fileNameNew(file.getOriginalFilename());
 			}
-			File dest = new File(SaveFilePath + fileName);
+			if (file.isEmpty()) {
+				System.out.println("上传第" + (i++) + "个文件失败" + servPath + pathFile);
+			}
+			File dest = new File(servPath + pathFile);
 			try {
 				file.transferTo(dest);
-				map.put(i, savePath + "/" + nowStr + "/" + fileName);
-				System.out.println("第" + (i + 1) + "个文件上传成功" + SaveFilePath + fileName);
+				map.put(i, pathFile);
+				System.out.println("第" + (i + 1) + "个文件上传成功" + servPath + pathFile);
 				//System.out.println("文件"+fileName+"的大小是："+ file.getSize());
 				if (file.getSize() > 100000){//文件大于100K就做缩略处理
 					// 缩略图
-					Thumbnails.of(SaveFilePath + fileName).size(320, 240)
-					    .keepAspectRatio(true).toFile(SaveFilePath + fileName + ".jpg");
+					Thumbnails.of(servPath + pathFile).size(320, 240)
+					    .keepAspectRatio(true).toFile(servPath + pathFile + ".jpg");
+				} else if (!"".equals(fileWH) && fileWH != 0) {
+					Thumbnails.of(servPath + pathFile).size(fileWH, fileWH)
+				    .keepAspectRatio(true).toFile(servPath + pathFile + ".jpg");
 				} else {
-					Thumbnails.of(SaveFilePath + fileName).size(120, 90)
-					    .keepAspectRatio(true).toFile(SaveFilePath + fileName + ".jpg");
+					Thumbnails.of(servPath + pathFile).size(120, 90)
+				    .keepAspectRatio(true).toFile(servPath + pathFile + ".jpg");
+					
 				}
 			} catch (IOException e) {
-				System.out.println("上传第" + (i++) + "个文件失败" + SaveFilePath + fileName);
+				System.out.println("上传第" + (i++) + "个文件失败" + servPath + pathFile);
 				System.out.printf(e.toString(), e);
 			}
 		}

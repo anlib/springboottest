@@ -1,8 +1,12 @@
 package com.cp.cpspringboot.teacher.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +25,7 @@ import com.cp.cpspringboot.teacherScore.model.TeacherScore;
 import com.cp.cpspringboot.teacherScore.service.TeacherScoreService;
 import com.cp.cpspringboot.teacherUniversity.model.TeacherUniversity;
 import com.cp.cpspringboot.teacherUniversity.service.TeacherUniversityService;
+import com.cp.util.FileUtils;
 
 /**
  * Teacher控制器
@@ -210,6 +215,44 @@ public class TeacherController {
 		modelMap.put("updateId", teacher.getId());
 		// modelMap.put("myflag", teacher.getMyflag());
 		return modelMap;
+	}
+	/**
+	 * 修改 teacher  头像
+	 * 
+	 * @param teacher
+	 * @return
+	 */
+	@RequestMapping(value = "/upload/{id}", method = RequestMethod.POST)
+	private List<String> uploadTeacher(@PathVariable("id") Long id, HttpServletRequest request) {
+		String savePath = "/zls/htmldata/attachment";
+		String servPath = "F:/suanzhe";
+		String formFileName = "file";
+		int fileWH = 70;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		List<Teacher> teacherOne = teacherService.findTeacher(map);
+		Teacher teacher = teacherOne.get(0);
+		String avatar = teacher.getAvatar();
+		List<String> fileNameList = new ArrayList<String>();
+		if (avatar != null && !"".equals(avatar)){
+			fileNameList.add(avatar);
+		}
+		Map<Integer, String> mapRnt = FileUtils.multiUpload(request, formFileName, 
+				savePath, servPath, fileNameList, fileWH);
+		List<String> list = new ArrayList<String>();
+		if (mapRnt != null && (avatar == null || "".equals(avatar))) { // 如果上传成功
+			//teacher = null;
+			teacher = new Teacher();
+			teacher.setId(id);
+			for (Entry<Integer, String> entry : mapRnt.entrySet()) {
+				System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+				teacher.setAvatar(entry.getValue());
+				int effectCount = teacherService.update(teacher);
+				avatar = teacher.getAvatar();
+			}
+		}
+		list.add(avatar);
+		return list;
 	}
 //bak code	
 //	@RequestMapping(value = "/test", method = RequestMethod.GET)

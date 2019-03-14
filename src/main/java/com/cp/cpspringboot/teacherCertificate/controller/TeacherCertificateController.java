@@ -61,11 +61,11 @@ public class TeacherCertificateController {
 		System.out.print("this is upload");
 		// Teacher 为 setid = 10
 		int setid = 10;
-		List<String> list = new ArrayList<String>();
 		String savePath = "/zls/htmldata/attachment";
 		String servPath = "F:/suanzhe";
 		String formFileName = "file";
 		Map<Integer, String> map = FileUtils.multiUpload(request, formFileName, savePath, servPath);
+		List<String> list = new ArrayList<String>();
 		if (map != null) { // 如果上传成功
 			TeacherCertificate teacherCertificate = new TeacherCertificate();
 			teacherCertificate.setPid(pid);
