@@ -3,12 +3,14 @@ package com.cp.cpspringboot.teacherStatement.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.cp.cpspringboot.teacherStatement.model.TeacherStatement;
 import com.cp.cpspringboot.teacherStatement.service.TeacherStatementService;
 
@@ -62,5 +64,35 @@ public class TeacherStatementController {
 		// return findTeacherStatementList(pageNum, pageSize,params,
 		// teacherStatement);
 	}
+	/**
+	 * 添加 teacher
+	 * 
+	 * @param teacher
+	 * @return
+	 */
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	private Map<String, Object> addTeacherStatement(@RequestBody TeacherStatement teacherStatement) {
+		// System.out.println("------- POST: add -------");
+		// String jsonString = JSONArray.toJSONString(teacher);
+		// System.out.println(jsonString);
+		int effectCount = teacherStatementService.insert(teacherStatement);
+		// System.out.println(teacher.getId());
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("insertId", teacherStatement.getId());
+		return modelMap;
+	}
 
+	/**
+	 * 修改 
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	private Map<String, Object> updateTeacherStatement(@RequestBody TeacherStatement teacherStatement) {
+		int effectCount = teacherStatementService.update(teacherStatement);
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("updateId", teacherStatement.getId());
+		return modelMap;
+	}
+	
 }

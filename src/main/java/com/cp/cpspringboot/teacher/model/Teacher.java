@@ -7,7 +7,7 @@ public class Teacher {
 	// address university edit_education edit_grade edit_subject
 	// graduation(tinyint) auth wechat
 	// mobile price style posttime(datetime) active(tinyint) flag(tinyint)
-	private Long id;
+	private int id;
 	private String teacher;
 	private String gender;
 	private String avatar;
@@ -29,7 +29,7 @@ public class Teacher {
 	private String city;
 	private String gradetaught;
 	private String teachtime;	
-	private String score;
+	private int score;
 	private String latitude;
 	private String longitude;
 	private String lastlongin;
@@ -55,11 +55,11 @@ public class Teacher {
 		this.openid = openid;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -253,11 +253,11 @@ public class Teacher {
 				+ "}";
 	}
 
-	public String getScore() {
+	public int getScore() {
 		return score;
 	}
 
-	public void setScore(String score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 

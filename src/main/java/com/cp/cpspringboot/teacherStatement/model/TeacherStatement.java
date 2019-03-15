@@ -1,7 +1,7 @@
 package com.cp.cpspringboot.teacherStatement.model;
 
 public class TeacherStatement {
-	private Long id;
+	private int id;
 	private String amount;
 	private String status;
 	private String type;
@@ -10,12 +10,13 @@ public class TeacherStatement {
 	private String posttime;
 	private String start;
 	private String end;
+	private int score;
 	private int listpid;
 	private String listsetid;
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getAmount() {
@@ -77,6 +78,12 @@ public class TeacherStatement {
 	}
 	public void setListsetid(String listsetid) {
 		this.listsetid = listsetid;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	

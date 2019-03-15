@@ -223,7 +223,7 @@ public class TeacherController {
 	 * @return
 	 */
 	@RequestMapping(value = "/upload/{id}", method = RequestMethod.POST)
-	private List<String> uploadTeacher(@PathVariable("id") Long id, HttpServletRequest request) {
+	private List<String> uploadTeacher(@PathVariable("id") int id, HttpServletRequest request) {
 		String savePath = "/zls/htmldata/attachment";
 		String servPath = "F:/suanzhe";
 		String formFileName = "file";

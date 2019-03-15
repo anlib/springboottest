@@ -64,7 +64,7 @@ public class TeacherServiceImpl implements TeacherService{
 
 	@Override
 	public int update(Teacher teacher) {
-		if ((teacher.getId()!=null && !"".equals(teacher.getId())) 
+		if (((Integer)teacher.getId() != null && !"".equals(teacher.getId())) 
 				|| (teacher.getOpenid()!=null && !"".equals(teacher.getOpenid()) )) {
             try {
                 int effectCount = TeacherMapper.update(teacher);

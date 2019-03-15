@@ -39,4 +39,23 @@ public class TeacherScoreServiceImpl implements TeacherScoreService{
 	public List<TeacherScore> findTeacherScoreCount(Map<String, Object> map) {
 		return TeacherScoreMapper.findTeacherScoreCount(map);
 	}
+
+	@Override
+	public int insert(TeacherScore teacherScore) {
+        if (teacherScore!=null && !"".equals(teacherScore)) {
+            try {
+                int effectCount = TeacherScoreMapper.insert(teacherScore);
+                if (effectCount > 0) {
+                    return effectCount;
+                } else {
+                    throw new RuntimeException("插入失败");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("插入失败"+ e.getMessage());
+            }
+        }else {
+            throw new RuntimeException("信息不能为空");
+        }
+	}
+
 }

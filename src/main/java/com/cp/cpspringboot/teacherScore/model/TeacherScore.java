@@ -3,10 +3,11 @@ package com.cp.cpspringboot.teacherScore.model;
 public class TeacherScore {
 	private Long id;
 	private String content;
-	private String username;
-	private String num;
-	private String userid;
+	private String fromuserid;
+	private String score;
 	private int listpid;
+	private int listsetid;
+	private int statementid;
 	private int count;
 	public Long getId() {
 		return id;
@@ -20,23 +21,17 @@ public class TeacherScore {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getUsername() {
-		return username;
+	public String getFromuserid() {
+		return fromuserid;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFromuserid(String fromuserid) {
+		this.fromuserid = fromuserid;
 	}
-	public String getNum() {
-		return num;
+	public String getScore() {
+		return score;
 	}
-	public void setNum(String num) {
-		this.num = num;
-	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setScore(String score) {
+		this.score = score;
 	}
 	public int getListpid() {
 		return listpid;
@@ -44,11 +39,23 @@ public class TeacherScore {
 	public void setListpid(int listpid) {
 		this.listpid = listpid;
 	}
+	public int getListsetid() {
+		return listsetid;
+	}
+	public void setListsetid(int listsetid) {
+		this.listsetid = listsetid;
+	}
 	public int getCount() {
 		return count;
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public int getStatementid() {
+		return statementid;
+	}
+	public void setStatementid(int statementid) {
+		this.statementid = statementid;
 	}
 	
 }

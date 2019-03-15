@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper
 	namespace="com.cp.cpspringboot.teacherStatement.mapper.TeacherStatementMapper">
 	<sql id="Base_Column_List">
-		amount,status,type,forteacher,id,subject,posttime,start,end,listpid,listsetid
+		amount,status,type,forteacher,id,subject,posttime,start,end,listpid,listsetid,score
 	</sql>
 	<!-- 根据条件查询 -->
 	<select id="findTeacherStatement" parameterType="hashmap"
@@ -30,4 +30,97 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</select>
+	<!-- 根据条件更新 -->
+	<update id="update" parameterType="com.cp.cpspringboot.teacherStatement.model.TeacherStatement"
+		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		update zls_item_teacher_statement
+		<trim prefix="set" suffixOverrides=",">
+			<if test="status !=null and status !=''">
+				status=#{status,jdbcType=INTEGER},
+			</if>
+			<if test="score !=null and score !=''">
+				score=#{score,jdbcType=INTEGER},
+			</if>
+			<if test="start !=null and start !=''">
+				start=#{start},
+			</if>
+			<if test="end !=null and end !=''">
+				end=#{end},
+			</if>
+		</trim>
+		<where>
+			<if test="id!=null and id!=''">
+				and id=#{id,jdbcType=INTEGER}
+			</if>
+		</where>
+	</update>
+	
+	<insert id="insert" parameterType="com.cp.cpspringboot.teacherStatement.model.TeacherStatement"
+		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into zls_item_teacher_statement
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="forteacher != null">
+				forteacher,
+			</if>
+			<if test="listpid != null">
+				listpid,
+			</if>
+			<if test="listsetid != null">
+				listsetid,
+			</if>
+			<if test="amount != null and amount !=''">
+				amount,
+			</if>
+			<if test="status != null and status !=''">
+				status,
+			</if>
+			<if test="type != null and type !=''">
+				type,
+			</if>
+			<if test="subject != null and subject !=''">
+				subject,
+			</if>
+			<if test="start != null and start !=''">
+				start,
+			</if>
+			<if test="end != null and end !=''">
+				end,
+			</if>
+			<if test="score != null and score !=''">
+				score,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="forteacher != null">
+				#{forteacher,jdbcType=INTEGER},
+			</if>
+			<if test="listpid != null">
+				#{listpid,jdbcType=INTEGER},
+			</if>
+			<if test="listsetid != null">
+				#{listsetid,jdbcType=INTEGER},
+			</if>
+			<if test="amount != null and amount !=''">
+				#{amount,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null and status !=''">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="type != null and type !=''">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="subject != null and subject !=''">
+				#{subject,jdbcType=VARCHAR},
+			</if>
+			<if test="start != null and start !=''">
+				#{start,jdbcType=VARCHAR},
+			</if>
+			<if test="end != null and end !=''">
+				#{end,jdbcType=VARCHAR},
+			</if>
+			<if test="score != null and score !=''">
+				#{score,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
 </mapper>

@@ -1,11 +1,9 @@
 package com.cp.cpspringboot.teacherScore.service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import com.cp.cpspringboot.teacherScore.model.TeacherScore;
 
-import ch.qos.logback.core.subst.Token.Type;
+import com.cp.cpspringboot.teacherScore.model.TeacherScore;
 
 
 /**
@@ -23,4 +21,6 @@ public interface TeacherScoreService {
 	List<TeacherScore> findTeacherScore(Map<String, Object> map);
 
 	List<TeacherScore> findTeacherScoreCount(Map<String, Object> map);
+
+	int insert(TeacherScore teacherScore);
 }

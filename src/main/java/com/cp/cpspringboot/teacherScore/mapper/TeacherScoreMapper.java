@@ -2,9 +2,10 @@ package com.cp.cpspringboot.teacherScore.mapper;
 
 import java.util.List;
 import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
+
 import com.cp.cpspringboot.teacherScore.model.TeacherScore;
-import com.github.pagehelper.PageHelper;
 
 /**
  * TeacherScore表mapper接口
@@ -16,4 +17,7 @@ public interface TeacherScoreMapper {
     List<TeacherScore> findTeacherScore(Map<String, Object> map);
 
 	List<TeacherScore> findTeacherScoreCount(Map<String, Object> map);
+
+	int insert(TeacherScore teacherScore);
+
 }
