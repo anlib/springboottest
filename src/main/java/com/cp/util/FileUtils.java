@@ -525,7 +525,7 @@ public class FileUtils {
 		String pathFile = null;
 		for (int i = 0; i < files.size(); i++) {
 			MultipartFile file = files.get(i);
-			if (fileNameList != null &&  !"".equals(fileNameList)){
+			if (fileNameList.size() > i){
 				pathFile = fileNameList.get(i);
 				System.out.println("使用原有文件名：" + pathFile);
 			}else{
