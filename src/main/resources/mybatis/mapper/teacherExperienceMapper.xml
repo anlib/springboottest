@@ -13,10 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from zls_item_teacher_experience
 		<where>
 			<if test="id!=null and id!=''">
-				and id=#{id,jdbcType=INTEGER}
+				and id=#{id}
 			</if>
 			<if test="pid!=null and pid!=''">
-				and pid=#{pid,jdbcType=INTEGER}
+				and pid=#{pid}
 			</if>
 		</where>
 		<choose>

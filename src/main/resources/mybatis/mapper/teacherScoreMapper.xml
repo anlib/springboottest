@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="TeacherScore">
 		select
 		<include refid="Base_Column_List" />
-		from zls_item_teacher_Score
+		from zls_item_teacher_score
 		<where>
 			<if test="id!=null and id!=''">
 				and id=#{id,jdbcType=INTEGER}
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据条件查询总数 -->
 	<select id="findTeacherScoreCount" parameterType="hashmap"
 		resultType="TeacherScore">
-		select count(id) as count from zls_item_teacher_Score
+		select count(id) as count from zls_item_teacher_score
 		<where>
 			<if test="fromuserid !=null">
 				and fromuserid=#{fromuserid,jdbcType=INTEGER}
@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="insert" parameterType="com.cp.cpspringboot.teacherScore.model.TeacherScore"
 		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-		insert into zls_item_teacher_Score
+		insert into zls_item_teacher_score
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="score != null">
 				score,

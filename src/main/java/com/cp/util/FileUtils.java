@@ -525,14 +525,16 @@ public class FileUtils {
 		String pathFile = null;
 		for (int i = 0; i < files.size(); i++) {
 			MultipartFile file = files.get(i);
-			if (fileNameList.size() > i){
-				pathFile = fileNameList.get(i);
-				System.out.println("使用原有文件名：" + pathFile);
-			}else{
-				pathFile = savePath + "/" + nowStr + "/" + FileUtils.fileNameNew(file.getOriginalFilename());
+			//先赋予一个新的路径和名称，如果需要使用旧的再覆盖
+			pathFile = savePath + "/" + nowStr + "/" + FileUtils.fileNameNew(file.getOriginalFilename());
+			if (fileNameList != null && !"".equals(fileNameList)){
+				if (fileNameList.size() > i){
+					pathFile = fileNameList.get(i);
+					System.out.println("使用原有文件名：" + pathFile);
+				}
 			}
 			if (file.isEmpty()) {
-				System.out.println("上传第" + (i++) + "个文件失败" + servPath + pathFile);
+				System.out.println("file为空，上传第" + (i++) + "个文件失败" + servPath + pathFile);
 			}
 			File dest = new File(servPath + pathFile);
 			try {
@@ -553,9 +555,11 @@ public class FileUtils {
 					
 				}
 			} catch (IOException e) {
-				System.out.println("上传第" + (i++) + "个文件失败" + servPath + pathFile);
+				System.out.println("上传第" + (i++) + "个文件失败(java-catch)" + servPath + pathFile);
 				System.out.printf(e.toString(), e);
-			}
+			} finally {
+				System.out.println("上传第" + (i++) + "个文件失败(java-finally)" + servPath + pathFile);
+	        }
 		}
 		// System.out.println("IO cost:" + (System.currentTimeMillis() - start)
 		// + "ms");
@@ -581,4 +585,5 @@ public class FileUtils {
 		}
 		return fileNameNew;
 	}
+
 }

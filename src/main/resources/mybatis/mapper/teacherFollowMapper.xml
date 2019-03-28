@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="TeacherFollow">
 		select
 		<include refid="Base_Column_List" />
-		from zls_item_teacher_Follow
+		from zls_item_teacher_follow
 		<where>
 			<if test="id!=null">
 				and id=#{id,jdbcType=INTEGER}
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据条件查询总数 -->
 	<select id="findTeacherFollowCount" parameterType="hashmap"
 		resultType="TeacherFollow">
-		select count(id) as count from zls_item_teacher_Follow
+		select count(id) as count from zls_item_teacher_follow
 		<where>
 			<if test="touserid !=null">
 				and touserid=#{touserid,jdbcType=INTEGER}
@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 添加follow -->
 	<insert id="insert" parameterType="com.cp.cpspringboot.teacherFollow.model.TeacherFollow"
 		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-		insert into zls_item_teacher_Follow
+		insert into zls_item_teacher_follow
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="touserid != null">
 				touserid,
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 根据条件删除 -->
 	<delete id="delete" parameterType="com.cp.cpspringboot.teacherFollow.model.TeacherFollow">
-		DELETE FROM zls_item_teacher_Follow
+		DELETE FROM zls_item_teacher_follow
 		<where>
 			<if test="touserid !=null">
 				and touserid=#{touserid,jdbcType=INTEGER}

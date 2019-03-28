@@ -4,16 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>文件上传</title>
+<title>index</title>
 </head>
 <body>
-	<br/>---------------upload<br/>
-	<form
-		action="${pageContext.request.contextPath}/teacherCertificate/upload/1"
-		enctype="multipart/form-data" method="post">
-		上传用户：<input type="text" name="username"><br /> 上传文件1：<input
-			type="file" name="file"><br /> 上传文件2：<input type="file"
-			name="file"><br /> <input type="submit" value="提交">
-	</form>
+	<br/>---------------index---------------<br/>
 </body>
 </html>

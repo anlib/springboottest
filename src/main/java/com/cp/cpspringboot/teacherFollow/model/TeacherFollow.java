@@ -2,8 +2,8 @@ package com.cp.cpspringboot.teacherFollow.model;
 
 public class TeacherFollow {
 	private Long id;
-	private String touserid;
-	private String fromuserid;
+	private Long touserid;
+	private Long fromuserid;
 	private int count;
 	public Long getId() {
 		return id;
@@ -11,16 +11,16 @@ public class TeacherFollow {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getTouserid() {
+	public Long getTouserid() {
 		return touserid;
 	}
-	public void setTouserid(String touserid) {
+	public void setTouserid(Long touserid) {
 		this.touserid = touserid;
 	}
-	public String getFromuserid() {
+	public Long getFromuserid() {
 		return fromuserid;
 	}
-	public void setFromuserid(String fromuserid) {
+	public void setFromuserid(Long fromuserid) {
 		this.fromuserid = fromuserid;
 	}
 	public int getCount() {

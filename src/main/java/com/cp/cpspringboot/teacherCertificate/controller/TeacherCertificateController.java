@@ -62,7 +62,8 @@ public class TeacherCertificateController {
 		// Teacher 为 setid = 10
 		int setid = 10;
 		String savePath = "/zls/htmldata/attachment";
-		String servPath = "F:/suanzhe";
+		String servPath = "/opt/webphp/";
+		//String servPath = "F:/suanzhe";
 		String formFileName = "file";
 		Map<Integer, String> map = FileUtils.multiUpload(request, formFileName, savePath, servPath);
 		List<String> list = new ArrayList<String>();

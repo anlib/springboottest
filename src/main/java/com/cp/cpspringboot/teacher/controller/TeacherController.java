@@ -225,7 +225,8 @@ public class TeacherController {
 	@RequestMapping(value = "/upload/{id}", method = RequestMethod.POST)
 	private List<String> uploadTeacher(@PathVariable("id") int id, HttpServletRequest request) {
 		String savePath = "/zls/htmldata/attachment";
-		String servPath = "F:/suanzhe";
+		String servPath = "/opt/webphp/";
+		//String servPath = "F:/suanzhe";
 		String formFileName = "file";
 		int fileWH = 70;
 		Map<String, Object> map = new HashMap<String, Object>();

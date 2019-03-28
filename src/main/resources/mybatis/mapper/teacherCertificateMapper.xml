@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="TeacherCertificate">
 		select
 		<include refid="Base_Column_List" />
-		from zls_item_teacher_Certificate
+		from zls_item_teacher_certificate
 		<where>
 			<if test="id!=null and id!=''">
 				and id=#{id,jdbcType=INTEGER}
